@@ -226,7 +226,7 @@ namespace Wanted
 		// 레벨이 있으면 이벤트 전달.
 		if (!mainLevel)
 		{
-			// Sielnt is violent.
+			// Silent is violent.
 			// 침묵은 폭력이다.
 			// -> 로그 메시지 안남기면 나빠.
 			std::cout << "mainLevel is empty.\n";

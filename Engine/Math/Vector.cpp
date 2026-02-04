@@ -35,7 +35,7 @@ namespace Wanted
 			string = nullptr;
 		}
 
-		string = new char;
+		string = new char[128];
 		memset(string, 0, sizeof(char) * 128);
 		sprintf_s(string, 128, "(%d, %d)", x, y);
 

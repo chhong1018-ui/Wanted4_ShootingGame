@@ -42,7 +42,7 @@ namespace Wanted
 		// 화면 너비 반환 함수.
 		inline int GetWidth() const { return setting.width; }
 
-		// 화면 높이 반환 함수
+		// 화면 높이 반환 함수.
 		inline int GetHeight() const { return setting.height; }
 
 	protected:

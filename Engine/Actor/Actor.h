@@ -27,6 +27,15 @@ namespace Wanted
 		virtual void Tick(float deltaTime);
 		virtual void Draw();
 
+		// 삭제 요청 함수.
+		void Destroy();
+
+		// 삭제가 될 때 호출 될 이벤트 함수.
+		virtual void OnDestroy();
+
+		// 게임 종료 함수.
+		void QuitGame();
+
 		// 위치변경 및 읽기 함수.
 		void SetPosition(const Vector2& newPosition);
 		inline Vector2 GetPosition() const { return position; }
@@ -53,8 +62,6 @@ namespace Wanted
 
 		inline int GetSortingOrder() const { return sortingOrder; }
 
-		inline int GetWidth() const { return wifth; }
-
 	protected:
 		// 이미 beginPlay 이벤트를 받았는지 여부.
 		bool hasBeganPlay = false;
@@ -69,7 +76,7 @@ namespace Wanted
 		char* image = nullptr;
 
 		// 문자열 길이.
-		int wifth = 0;
+		int width = 0;
 
 		// 색상 값
 		Color color = Color::White;
@@ -80,7 +87,7 @@ namespace Wanted
 		// 그리기 우선순위(값이 크면 우선순위가 높음).
 		int sortingOrder = 0;
 
-		// 위치.
+		// 위치
 		Vector2 position;
 	};
 }
