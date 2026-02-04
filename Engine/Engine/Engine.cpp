@@ -27,6 +27,9 @@ namespace Wanted
 
 		// 커서 끄기.
 		Util::TurnOffCursor();
+
+		// 랜덤 종자 값 설정.
+		Util::SetRandomSeed();
 	}
 
 	Engine::~Engine()
