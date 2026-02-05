@@ -1,4 +1,4 @@
-#include "Actor.h"
+ï»¿#include "Actor.h"
 #include "Render/Renderer.h"
 #include "Util/Util.h"
 #include "Engine/Engine.h"
@@ -14,7 +14,7 @@ namespace Wanted
 		Color color)
 		: position(position), color(color)
 	{
-		// ¹®ÀÚ¿­ º¹»ç.
+		// ë¬¸ìì—´ ë³µì‚¬.
 		width = static_cast<int>(strlen(image));
 		this->image = new char[width + 1];
 		strcpy_s(this->image, width + 1, image);
@@ -22,13 +22,13 @@ namespace Wanted
 
 	Actor::~Actor()
 	{
-		// ¸Ş¸ğ¸® ÇØÁ¦.
+		// ë©”ëª¨ë¦¬ í•´ì œ.
 		SafeDeleteArray(image);
 	}
 
 	void Actor::BeginPlay()
 	{
-		// ÀÌº¥Æ®¸¦ ¹ŞÀº ÈÄ¿¡´Â ÇÃ·¡±× ¼³Á¤.
+		// ì´ë²¤íŠ¸ë¥¼ ë°›ì€ í›„ì—ëŠ” í”Œë˜ê·¸ ì„¤ì •.
 		hasBeganPlay = true;
 	}
 
@@ -40,7 +40,7 @@ namespace Wanted
 	{
 		//Renderer::Draw(position, color, image);
 
-		// ·»´õ·¯¿¡ µ¥ÀÌÅÍ Á¦Ãâ.
+		// ë Œë”ëŸ¬ì— ë°ì´í„° ì œì¶œ.
 		Renderer::Get().Submit(image, position, color, sortingOrder);
 	}
 
@@ -63,50 +63,79 @@ namespace Wanted
 	bool Actor::TestIntersect(const Actor* const other)
 	{
 		// AABB (Axis aligned Bounding Box)
-		// xÁÂÇ¥¸¸ °í·ÁÇÏ¸é µÊ. y´Â Å©±â°¡ 1ÀÌ±â ¶§¹®.
+		// xì¢Œí‘œë§Œ ê³ ë ¤í•˜ë©´ ë¨. yëŠ” í¬ê¸°ê°€ 1ì´ê¸° ë•Œë¬¸.
 
-		// ÀÚ±â ÀÚ½ÅÀÇ xÁÂÇ¥ Á¤º¸.
+		// ìê¸° ìì‹ ì˜ xì¢Œí‘œ ì •ë³´.
 		int xMin = position.x;
 		int xMax = position.x + width - 1;
 
-		// Ãæµ¹À» ºñ±³ÇÒ ´Ù¸¥ ¾×ÅÍÀÇ xÁÂÇ¥ Á¤º¸.
+		// ì¶©ëŒì„ ë¹„êµí•  ë‹¤ë¥¸ ì•¡í„°ì˜ xì¢Œí‘œ ì •ë³´.
 		int otherXMin = other->GetPosition().x;
-		int otherXMax = other->position.x
-			+ other->position.x + other->width - 1;
+		int otherXMax 
+			= other->position.x + other->width - 1;
+		// ìê¸° ìì‹ ì˜ yì¢Œí‘œ ì •ë³´.
+		int yMin = position.y;
+		int yMax = position.y + height - 1;
+
+		// ì¶©ëŒì„ ë¹„êµí•  ë‹¤ë¥¸ ì•¡í„°ì˜ xì¢Œí‘œ ì •ë³´.
+		int otherYMin = other->GetPosition().x;
+		int otherYMax 
+			= other->position.y + other->height - 1;
 
 
-		// ¾È°ãÄ¡´Â Á¶°Ç È®ÀÎ.
+		// ì•ˆê²¹ì¹˜ëŠ” ì¡°ê±´ í™•ì¸.
 
-		// ´Ù¸¥ ¾×ÅÍÀÇ ¿ŞÂÊ ÁÂÇ¥°¡
-		// ³» ¿À¸¥ÂÊ ÁÂÇ¥º¸´Ù ´õ ¿À¸¥ÂÊ¿¡ ÀÖ´Â °æ¿ì.
+		// ë‹¤ë¥¸ ì•¡í„°ì˜ ì™¼ìª½ ì¢Œí‘œê°€
+		// ë‚´ ì˜¤ë¥¸ìª½ ì¢Œí‘œë³´ë‹¤ ë” ì˜¤ë¥¸ìª½ì— ìˆëŠ” ê²½ìš°.
 		if (otherXMin > xMax)
 		{
 			return false;
 		}
 
-		// ´Ù¸¥ ¾×ÅÍÀÇ ¿À¸¥ÂÊ ÁÂÇ¥°¡
-		// ³» ¿ŞÂÊ ÁÂÇ¥º¸´Ù ´õ ¿ŞÂÊ¿¡ ÀÖ´Â °æ¿ì.
+		// ë‹¤ë¥¸ ì•¡í„°ì˜ ì˜¤ë¥¸ìª½ ì¢Œí‘œê°€
+		// ë‚´ ì™¼ìª½ ì¢Œí‘œë³´ë‹¤ ë” ì™¼ìª½ì— ìˆëŠ” ê²½ìš°.
 		if (otherXMax < xMin)
 		{
 			return false;
 		}
 
-		// y´Â Å©±â°¡ 1ÀÌ±â ¶§¹®¿¡ ÁÂÇ¥°¡ °°ÀºÁö ¿©ºÎ¸¸ È®ÀÎ.
-		return position.y == other->position.y;
+		// ë‹¤ë¥¸ ì•¡í„°ì˜ ìœ„ìª½ ì¢Œí‘œê°€ ë‚´ ì•„ë˜ìª½ ì¢Œí‘œë³´ë‹¤ ë” ì•„ë˜ìª½ì— ìˆëŠ” ê²½ìš°. 
+		if (otherYMin > yMax)
+		{
+			return false;
+		}
+
+		if (otherYMax > yMin)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	void Actor::ChangeImage(const char* newImage)
+	{
+		// ê¸°ì¡´ ë©”ëª¨ë¦¬ í•´ì œ
+		SafeDeleteArray(image);
+
+		// ìƒˆë¡œìš´ ë¬¸ìì—´ ë³µì‚¬.
+		width = static_cast<int>(strlen(newImage));
+		image = new char[width + 1];
+		strcpy_s(image, width + 1, newImage);
 	}
 
 	void Actor::SetPosition(const Vector2& newPosition)
 	{
-		// ·»´õ·¯¿¡ ºóÄ­ ±×¸®±â ¿äÃ».
+		// ë Œë”ëŸ¬ì— ë¹ˆì¹¸ ê·¸ë¦¬ê¸° ìš”ì²­.
 		//Renderer::Draw(position, ' ');
 
-		// º¯°æÇÏ·Á´Â À§Ä¡°¡ ÇöÀç À§Ä¡¿Í °°À¸¸é °Ç³Ê¶Ü.
+		// ë³€ê²½í•˜ë ¤ëŠ” ìœ„ì¹˜ê°€ í˜„ì¬ ìœ„ì¹˜ì™€ ê°™ìœ¼ë©´ ê±´ë„ˆëœ€.
 		if (position == newPosition)
 		{
 			return;
 		}
 
-		// »õ·Î¿î À§Ä¡ ¼³Á¤.
+		// ìƒˆë¡œìš´ ìœ„ì¹˜ ì„¤ì •.
 		position = newPosition;
 	}
 }

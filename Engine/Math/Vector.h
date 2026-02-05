@@ -5,6 +5,7 @@
 
 namespace Wanted
 {
+
 	class WANTED_API Vector2
 	{
 	public:

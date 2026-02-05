@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Actor/Actor.h"
 #include "Util/Timer.h"
@@ -7,13 +7,6 @@ using namespace Wanted;
 
 class Player : public Actor
 {
-	// ¹ß»ç ¸ğµå
-	enum class FireMode
-	{
-		None = -1,
-		OneShot,
-		Repeat
-	};
 
 	RTTI_DECLARATIONS(Player, Actor)
 
@@ -24,28 +17,28 @@ public:
 private:
 	virtual void Tick(float deltaTime) override;
 
-	// ¿À¸¥ÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö.
+	// ì˜¤ë¥¸ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜.
 	void MoveRight();
 
-	// ¿ŞÂÊÀ¸·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö.
+	// ì™¼ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜.
 	void MoveLeft();
 
-	// Åº¾à ¹ß»ç ÇÔ¼ö.
+	// ìœ—ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜.
+	void MoveUp();
+
+	// ì•„ë«ìª½ìœ¼ë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜..
+	void MoveDown();
+
+	// íƒ„ì•½ ë°œì‚¬ í•¨ìˆ˜.
 	void Fire();
 
-	// ¿¬¼Ó ¹ß»ç ÇÔ¼ö.
-	void FireInterval();
-
-	// ¹ß»ç °¡´É ¿©ºÎ È®ÀÎ ÇÔ¼ö.
+	// ë°œì‚¬ ê°€ëŠ¥ ì—¬ë¶€ í™•ì¸ í•¨ìˆ˜.
 	bool CanShoot() const;
 
 private:
-	// ¹ß»ç ¸ğµå.
-	FireMode fireMode = FireMode::None;
 
-	
 	Timer timer;
 
-	//// ¿¬»ç ½Ã°£ °£°İ.
+	// ì—°ì‚¬ ì‹œê°„ ê°„ê²©.
 	float fireInterval = 0.2f;
 };

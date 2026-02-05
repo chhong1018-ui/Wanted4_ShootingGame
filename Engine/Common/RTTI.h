@@ -1,15 +1,15 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Common/Common.h"
 
-// »ó¼Ó °ü°è¿¡ ÀÖ´Â Å¬·¡½º °£ÀÇ
-// µ¿Àû(½ÇÇàÁß¿¡) Çüº¯È¯À» ÇÏ±â À§ÇØ »ç¿ëÇÏ´Â Å¬·¡½º.
+// ìƒì† ê´€ê³„ì— ìžˆëŠ” í´ëž˜ìŠ¤ ê°„ì˜
+// ë™ì (ì‹¤í–‰ì¤‘ì—) í˜•ë³€í™˜ì„ í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” í´ëž˜ìŠ¤.
 // RunTime-Type-Information.
 namespace Wanted
 {
-	// RTTI¸¦ Á¦°øÇÏ´Â Å¬·¡½ºÀÇ ÃÖ»óÀ§ Å¬·¡½º.
-	// C#ÀÇ Dbject, JavaÀÇ Object,
-	// ¾ð¸®¾óÀÇ UObject·Î »ý°¢ ÇØ º¼ ¼ö ÀÖÀ½.
+	// RTTIë¥¼ ì œê³µí•˜ëŠ” í´ëž˜ìŠ¤ì˜ ìµœìƒìœ„ í´ëž˜ìŠ¤.
+	// C#ì˜ Dbject, Javaì˜ Object,
+	// ì–¸ë¦¬ì–¼ì˜ UObjectë¡œ ìƒê° í•´ ë³¼ ìˆ˜ ìžˆìŒ.
 	class WANTED_API RTTI
 	{
 	public:
@@ -25,7 +25,7 @@ namespace Wanted
 			return false;
 		}
 
-		// Å¸ÀÔ Áú¹® ÇÔ¼ö.
+		// íƒ€ìž… ì§ˆë¬¸ í•¨ìˆ˜.
 		template<typename T>
 		bool IsTypeOf()
 		{
@@ -56,8 +56,8 @@ namespace Wanted
 	};
 }
 
-// RTTI¸¦ ¼±¾ðÇÒ Å¬·¡½º¿¡ Ãß°¡ÇÒ ¸ÅÅ©·Î.
-// ¾Æ·¡ ÄÚµå¿¡¼­ Type, ParentTypeÀÌ ½ÇÁ¦ Å¸ÀÔÀ¸·Î º¯È¯µÇ¾î º¹»ç/ºÙ¿©³Ö±â µÊ.
+// RTTIë¥¼ ì„ ì–¸í•  í´ëž˜ìŠ¤ì— ì¶”ê°€í•  ë§¤í¬ë¡œ.
+// ì•„ëž˜ ì½”ë“œì—ì„œ Type, ParentTypeì´ ì‹¤ì œ íƒ€ìž…ìœ¼ë¡œ ë³€í™˜ë˜ì–´ ë³µì‚¬/ë¶™ì—¬ë„£ê¸° ë¨.
 #define RTTI_DECLARATIONS(Type, ParentType)												\
 friend class RTTI;																		\
 protected:																				\

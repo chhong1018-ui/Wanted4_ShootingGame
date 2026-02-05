@@ -1,17 +1,17 @@
-#include "Input.h"
+ï»¿#include "Input.h"
 #include <Windows.h>
 #include <iostream>
 
-// Ctrl+HomeÅ°·Î ÆÄÀÏ ÃÖ»ó´Ü ÀÌµ¿.
-// Rider´Â Çì´õ ÀÚµ¿ Ãß°¡ ÇØÁÜ.
+// Ctrl+Homeí‚¤ë¡œ íŒŒì¼ ìµœìƒë‹¨ ì´ë™.
+// RiderëŠ” í—¤ë” ìë™ ì¶”ê°€ í•´ì¤Œ.
 namespace Wanted
 {
-	// Àü¿ª º¯¼ö ÃÊ±âÈ­.
+	// ì „ì—­ ë³€ìˆ˜ ì´ˆê¸°í™”.
 	Input* Input::instance = nullptr;
 
 	Input::Input()
 	{
-		// °´Ã¼°¡ ÃÊ±âÈ­ µÇ¸é ÀÚ±â ÀÚ½ÅÀÇ ÁÖ¼Ò¸¦ ÀúÀå.
+		// ê°ì²´ê°€ ì´ˆê¸°í™” ë˜ë©´ ìê¸° ìì‹ ì˜ ì£¼ì†Œë¥¼ ì €ì¥.
 		instance = this;
 	}
 
@@ -38,29 +38,29 @@ namespace Wanted
 
 	Input& Input::Get()
 	{
-		// ½Ì±ÛÅÏ(singleton).
-		// ÀÌ ÇÔ¼ö´Â ÄÜÅÙÃ÷ ÇÁ·ÎÁ§Æ®¿¡¼­ Á¢±ÙÇÔ.
-		// µû¶ó¼­ ¿£ÁøÀº ÀÌ¹Ì ÃÊ±âÈ­ ¿Ï·á »óÅÂ.
+		// ì‹±ê¸€í„´(singleton).
+		// ì´ í•¨ìˆ˜ëŠ” ì½˜í…ì¸  í”„ë¡œì íŠ¸ì—ì„œ ì ‘ê·¼í•¨.
+		// ë”°ë¼ì„œ ì—”ì§„ì€ ì´ë¯¸ ì´ˆê¸°í™” ì™„ë£Œ ìƒíƒœ.
 		if (!instance)
 		{
 			//return *nullptr;
 			std::cout << "Error: Input::Get(). instance is null\n";
 
-			// µğ¹ö±× ¸ğµå¿¡¼­¸¸ µ¿ÀÛÇÔ.
-			// ÀÚµ¿À¸·Î Áß´ÜÁ¡ °É¸².
+			// ë””ë²„ê·¸ ëª¨ë“œì—ì„œë§Œ ë™ì‘í•¨.
+			// ìë™ìœ¼ë¡œ ì¤‘ë‹¨ì  ê±¸ë¦¼.
 			__debugbreak();
 		}
 
 		// Lazy-Pattern.
-		// ÀÌÆåÆ¼ºê C++¿¡ ³ª¿È.
+		// ì´í™í‹°ë¸Œ C++ì— ë‚˜ì˜´.
 		//static Input instance;
 		return *instance;
 	}
 
 	void Input::ProcessInput()
 	{
-		// Å° ¸¶´Ù ÀÔ·Â ÀĞ±â.
-		// !!! ¿î¿µÃ¼Á¦°¡ Á¦°øÇÏ´Â ±â´ÉÀ» »ç¿ëÇÒ ¼ö ¹Û¿¡ ¾øÀ½.
+		// í‚¤ ë§ˆë‹¤ ì…ë ¥ ì½ê¸°.
+		// !!! ìš´ì˜ì²´ì œê°€ ì œê³µí•˜ëŠ” ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ìˆ˜ ë°–ì— ì—†ìŒ.
 		for (int ix = 0; ix < 255; ++ix)
 		{
 			keyStates[ix].isKeyDown
@@ -70,7 +70,7 @@ namespace Wanted
 
 	void Input::SavePreviousInputStates()
 	{
-		// ÇöÀç ÀÔ·Â °ªÀ» ÀÌÀü ÀÔ·Â °ªÀ¸·Î ÀúÀå.
+		// í˜„ì¬ ì…ë ¥ ê°’ì„ ì´ì „ ì…ë ¥ ê°’ìœ¼ë¡œ ì €ì¥.
 		for (int ix = 0; ix < 255; ++ix)
 		{
 			keyStates[ix].wasKeyDown
